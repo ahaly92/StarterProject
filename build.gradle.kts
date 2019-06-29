@@ -1,15 +1,13 @@
 buildscript {
-    extra.set("kotlinVersion", "1.3.31")
-
     repositories {
         google()
         jcenter()
 
     }
     dependencies {
-        val kotlinVersion = rootProject.extra.get("kotlinVersion")
-        classpath("com.android.tools.build:gradle:3.4.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath(Libs.gradle)
+        classpath(Libs.kotlinGradle)
+        classpath(Libs.navSafeArgs)
     }
 }
 
