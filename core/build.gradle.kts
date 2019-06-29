@@ -18,10 +18,11 @@ android {
 
     buildTypes {
         getByName("debug") {
-            
+            buildConfigField("boolean", "LOG_CONSOLE", "true")
         }
 
         getByName("release") {
+            buildConfigField("boolean", "LOG_CONSOLE", "false")
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }

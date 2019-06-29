@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import com.yeetsies.core.navigation.LiveNavigationField
+import com.yeetsies.core.navigation.NavigationEvent
 
 abstract class BaseFragment<out VM : BaseViewModel> : Fragment() {
     protected abstract val layoutResourceId: Int
@@ -31,4 +35,15 @@ abstract class BaseFragment<out VM : BaseViewModel> : Fragment() {
     ): View? {
         return inflater.inflate(layoutResourceId, container, false)
     }
+
+    protected fun configureNavigationListener(navigationLiveDataField: LiveNavigationField<NavigationEvent>) {
+        navigationLiveDataField.observe(viewLifecycleOwner, Observer { navigate(it) })
+    }
+
+    private fun navigate(event: NavigationEvent) {
+        view?.let {
+            Navigation.findNavController(it).navigate(event.navId, event.argumentsBundle())
+        }
+    }
 }
+
