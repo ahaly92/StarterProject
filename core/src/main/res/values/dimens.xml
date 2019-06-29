@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Text Sizes-->
+    <dimen name="text_xxs">10sp</dimen>
+    <dimen name="text_xs">12sp</dimen>
+    <dimen name="text_sm">16sp</dimen>
+    <dimen name="text_md">24sp</dimen>
+    <dimen name="text_lg">32sp</dimen>
+
+    <!--Spacing-->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xlg">32dp</dimen>
+</resources>
