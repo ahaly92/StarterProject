@@ -1,3 +1,7 @@
 <resources>
+    <!--Login-->
     <string name="app_name">StarterProject</string>
+    <string name="account_number_hint">account number</string>
+    <string name="password_hint">password</string>
+    <string name="login_button_text">Login</string>
 </resources>

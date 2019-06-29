@@ -53,3 +53,7 @@ android {
 }
 
 baseDependencies()
+
+dependencies {
+    implementation(project(":core"))
+}
