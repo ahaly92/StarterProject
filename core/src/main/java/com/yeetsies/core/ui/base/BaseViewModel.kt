@@ -6,7 +6,7 @@ import com.yeetsies.core.navigation.NavigationEvent
 import com.yeetsies.core.navigation.Navigator
 
 abstract class BaseViewModel : ViewModel() {
-    protected abstract val requiresAuth: Boolean
+    open val requiresAuth: Boolean = true
 }
 
 abstract class NavigationViewModel : BaseViewModel() {
