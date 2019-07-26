@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_account_number_error">Enter an Account Number</string>
+    <string name="empty_password_error">Enter a Password</string>
+</resources>
