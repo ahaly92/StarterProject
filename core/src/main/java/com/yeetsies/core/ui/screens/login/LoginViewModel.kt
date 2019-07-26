@@ -12,8 +12,8 @@ class LoginViewModel : NavigationViewModel() {
     private val accountNumber = MutableLiveData<String>()
 
     init {
-        accountNumber.latestValue = ""
-        password.latestValue = ""
+        accountNumber.value = ""
+        password.value = ""
     }
 
     fun onAirportSearchButtonClick() {
