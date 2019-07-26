@@ -10,11 +10,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.yeetsies.core.R
 import com.yeetsies.core.navigation.LiveNavigationField
 import com.yeetsies.core.navigation.NavigationEvent
+import com.yeetsies.core.utils.InactivityLogoutManagerImpl
+import io.reactivex.disposables.Disposable
 
-abstract class BaseFragment<out VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment<out VM : BaseViewModel>(
+    private val inactivityLogoutManagerImpl: InactivityLogoutManagerImpl = InactivityLogoutManagerImpl()
+) : Fragment() {
     protected abstract val layoutResourceId: Int
+
+    private lateinit var timerDisposable: Disposable
 
     abstract fun createViewModel(): VM
 
@@ -34,6 +41,23 @@ abstract class BaseFragment<out VM : BaseViewModel> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(layoutResourceId, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (viewModel.requiresAuth) {
+            timerDisposable = inactivityLogoutManagerImpl.getTimerCompleteBehaviorSubject().subscribe {
+                if (it) {
+                    navigate(NavigationEvent(R.id.loginFragment))
+                    InactivityLogoutManagerImpl().onLogout()
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timerDisposable.dispose()
     }
 
     protected fun configureNavigationListener(navigationLiveDataField: LiveNavigationField<NavigationEvent>) {

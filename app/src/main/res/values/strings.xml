@@ -7,4 +7,5 @@
 
     <!--Home-->
     <string name="home_screen_text">you are home</string>
+    <string name="restart_timer">restart timer</string>
 </resources>

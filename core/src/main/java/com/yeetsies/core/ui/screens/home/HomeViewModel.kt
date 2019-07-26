@@ -4,8 +4,11 @@ import com.yeetsies.core.R
 import com.yeetsies.core.navigation.NavigationDestination
 import com.yeetsies.core.ui.base.NavigationViewModel
 import com.yeetsies.core.ui.screens.login.LoginDestination
+import com.yeetsies.core.utils.InactivityLogoutManagerImpl
 
-class HomeViewModel : NavigationViewModel() {
+class HomeViewModel(
+    private val inactivityLogoutManagerImpl: InactivityLogoutManagerImpl = InactivityLogoutManagerImpl()
+) : NavigationViewModel() {
     override val requiresAuth: Boolean = true
     private val loggedIn: Boolean = true
 
@@ -13,6 +16,10 @@ class HomeViewModel : NavigationViewModel() {
         if (requiresAuth && !loggedIn) {
             navigator.navigateTo(LoginDestination())
         }
+    }
+
+    fun restartTimerClicked() {
+        inactivityLogoutManagerImpl.restartTimer()
     }
 }
 

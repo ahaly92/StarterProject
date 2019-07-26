@@ -7,11 +7,13 @@ import com.yeetsies.core.R
 import com.yeetsies.core.navigation.NavigationDestination
 import com.yeetsies.core.repository.login.LoginRepository
 import com.yeetsies.core.rest.Result
+import com.yeetsies.core.utils.InactivityLogoutManagerImpl
 import com.yeetsies.core.ui.base.NavigationViewModel
 import com.yeetsies.core.ui.screens.home.HomeDestination
 
 class LoginViewModel(
-    private val loginRepository: LoginRepository
+    private val loginRepository: LoginRepository,
+    private val inactivityLogoutManagerImpl: InactivityLogoutManagerImpl = InactivityLogoutManagerImpl()
 ) : NavigationViewModel() {
     override val requiresAuth: Boolean = false
 
@@ -35,6 +37,7 @@ class LoginViewModel(
                 }
                 is Result.Success -> {
                     navigator.navigateTo(HomeDestination())
+                    inactivityLogoutManagerImpl.startTimer()
                 }
             }
         }
