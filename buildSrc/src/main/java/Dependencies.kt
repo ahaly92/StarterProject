@@ -26,6 +26,13 @@ object Versions {
 
     const val timber = "4.7.1"
 
+    const val retrofit = "2.6.0"
+    const val okhttp = "3.11.0"
+    const val gson = "2.8.5"
+
+    const val rxJava = "2.1.8"
+    const val rxAndroid = "2.0.1"
+
     const val junit = "4.12"
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
@@ -51,6 +58,16 @@ object Libs {
     const val liveData = "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycle_version}"
 
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
+    const val gson = "com.google.code.gson:gson:${Versions.gson}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+
+    const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
 
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
@@ -81,6 +98,19 @@ fun Project.baseDependencies() {
 
         // logging
         "implementation"(Libs.timber)
+
+        // networking
+        "implementation"(Libs.retrofit)
+        "implementation"(Libs.retrofitGson)
+        "implementation"(Libs.retrofitRxAdapter)
+        "implementation"(Libs.gson)
+        "implementation"(Libs.okhttp)
+        "implementation"(Libs.okhttpLogging)
+
+        // concurrency
+        "implementation"(Libs.rxJava)
+        "implementation"(Libs.rxAndroid)
+
 
         // testing
         "testImplementation"(Libs.junit)
